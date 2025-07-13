@@ -7,18 +7,20 @@
     <title>Praneth Vasudeo Pujari - Portfolio</title>
 </head>
 <body>
-    <header>
-        <h1>Praneth Vasudeo Pujari</h1>
-        <h2>Senior Software Developer</h2>
-        <nav>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="Praneth Vasudeo Pujari.pdf" download>Download Resume</a></li>
-            </ul>
-        </nav>
+    <header class="animated-header">
+        <div class="header-content">
+            <h1 class="slide-in">Praneth Vasudeo Pujari</h1>
+            <h2 class="slide-in delay-1">Senior Software Developer</h2>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="resume.pdf" download class="resume-btn pulse">Download Resume</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <section id="about">
@@ -26,27 +28,63 @@
         <p>Brief introduction about Praneth goes here.</p>
     </section>
 
-    <section id="skills">
-        <h3>Skills</h3>
-        <ul>
-            <li>Node.js</li>
-            <li>React.js</li>
-            <li>JavaScript</li>
-            <li>Express.js</li>
-            <li>MongoDB</li>
-            <li>REST APIs</li>
-        </ul>
+    <section id="skills" class="fade-in">
+        <div class="section-content">
+            <h3 class="section-title">Skills</h3>
+            <div class="skills-container">
+                <div class="skill-card scale-in" data-skill="Node.js">
+                    <div class="skill-icon">N</div>
+                    <span>Node.js</span>
+                </div>
+                <div class="skill-card scale-in" data-skill="React.js">
+                    <div class="skill-icon">R</div>
+                    <span>React.js</span>
+                </div>
+                <div class="skill-card scale-in" data-skill="JavaScript">
+                    <div class="skill-icon">JS</div>
+                    <span>JavaScript</span>
+                </div>
+                <div class="skill-card scale-in" data-skill="Express.js">
+                    <div class="skill-icon">E</div>
+                    <span>Express.js</span>
+                </div>
+                <div class="skill-card scale-in" data-skill="MongoDB">
+                    <div class="skill-icon">M</div>
+                    <span>MongoDB</span>
+                </div>
+                <div class="skill-card scale-in" data-skill="REST APIs">
+                    <div class="skill-icon">API</div>
+                    <span>REST APIs</span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="projects">
-        <h3>Projects</h3>
-        <div class="project">
-            <h4>ELEMENT CLASH</h4>
-            <p>A strategy card game built with React.js.</p>
-        </div>
-        <div class="project">
-            <h4>Stockpy</h4>
-            <p>A stock prediction web app using Node.js frontend and Python ML backend.</p>
+    <section id="projects" class="fade-in">
+        <div class="section-content">
+            <h3 class="section-title">Projects</h3>
+            <div class="projects-grid">
+                <div class="project-card slide-up">
+                    <div class="project-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/80ab30ab-7134-4851-bd00-020f867cc179.png" alt="Element Clash Project">
+                    </div>
+                    <div class="project-info">
+                        <h4>ELEMENT CLASH</h4>
+                        <p>A strategy card game built with React.js.</p>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+                <div class="project-card slide-up delay-1">
+                    <div class="project-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4778fb4c-e7c1-4f5c-aa49-1378da2afe93.png" alt="Stockpy Project">
+                    </div>
+                    <div class="project-info">
+                        <h4>Stockpy</h4>
+                        <p>A stock prediction web app using Node.js frontend and Python ML backend.</p>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -56,8 +94,15 @@
         <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn Profile</a></p>
     </section>
 
-    <footer>
-        <p>&copy; 2023 Praneth Vasudeo Pujari</p>
+    <footer class="fade-in">
+        <div class="footer-content">
+            <p>&copy; 2023 Praneth Vasudeo Pujari</p>
+            <div class="social-links">
+                <a href="#" class="social-icon">GitHub</a>
+                <a href="#" class="social-icon">Twitter</a>
+                <a href="#" class="social-icon">LinkedIn</a>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
