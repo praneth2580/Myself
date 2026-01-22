@@ -4,7 +4,7 @@
 
 Building scalable web applications, mobile apps, and Android TV solutions with modern technologies.
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live-blue)](https://praneth2580.github.com/Myself)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-blue)](https://praneth2580.github.io/Myself)
 [![GitHub](https://img.shields.io/badge/GitHub-praneth2580-black)](https://github.com/praneth2580)
 [![Email](https://img.shields.io/badge/Email-praneth2580@gmail.com-red)](mailto:praneth2580@gmail.com)
 
@@ -86,7 +86,7 @@ I've worked on diverse projects including:
 - **Security Tools**: Security scanners and vulnerability assessment tools
 - **Open Source**: Contributing to open-source projects and maintaining personal repositories
 
-Check out my [Projects Page](https://praneth2580.github.com/Myself/projects.html) to see detailed project information.
+Check out my [Projects Page](https://praneth2580.github.io/Myself/projects.html) to see detailed project information.
 
 ## 📚 What I'm Learning
 
@@ -102,7 +102,7 @@ Always staying up-to-date with the latest technologies and best practices:
 
 I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
 
-- **Portfolio**: [praneth2580.github.com/Myself](https://praneth2580.github.com/Myself)
+- **Portfolio**: [praneth2580.github.io/Myself](https://praneth2580.github.io/Myself)
 - **GitHub**: [@praneth2580](https://github.com/praneth2580)
 - **Email**: [praneth2580@gmail.com](mailto:praneth2580@gmail.com)
 
