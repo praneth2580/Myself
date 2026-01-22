@@ -106,6 +106,148 @@
             border-color: rgba(255, 255, 255, 0.1);
         }
 
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in-delay-1 {
+            animation: fadeInUp 0.8s ease-out 0.1s forwards;
+            opacity: 0;
+        }
+
+        .fade-in-delay-2 {
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .fade-in-delay-3 {
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        .scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Scroll-triggered animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger animation for grid items */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .stagger-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse animation for buttons */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse-hover:hover {
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
         /* Fancy Loader Styles */
         .loader-container {
             position: fixed;
@@ -535,6 +677,114 @@
         if (getInTouchBtn) getInTouchBtn.addEventListener('click', openEmail);
         if (emailBtn) emailBtn.addEventListener('click', openEmail);
         if (githubBtn) githubBtn.addEventListener('click', openGitHub);
+
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                    }, index * 100);
+                    scrollObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach((section, index) => {
+            if (index > 0) { // Skip first section (header/hero)
+                section.classList.add('animate-on-scroll');
+                scrollObserver.observe(section);
+            }
+        });
+
+        // Stagger animation for project cards
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                    }, index * 50);
+                    staggerObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Apply stagger to project cards when they're rendered
+        function observeProjectCards() {
+            document.querySelectorAll('#projects-grid > div').forEach((card, index) => {
+                if (!card.classList.contains('stagger-item')) {
+                    card.classList.add('stagger-item');
+                    // Reset any existing animation state
+                    card.classList.remove('animated');
+                    staggerObserver.observe(card);
+                }
+            });
+        }
+
+        // Observe project cards after they're loaded
+        const projectsGrid = document.getElementById('projects-grid');
+        if (projectsGrid) {
+            const gridObserver = new MutationObserver(() => {
+                observeProjectCards();
+            });
+            gridObserver.observe(projectsGrid, { childList: true });
+            
+            // Initial observation
+            observeProjectCards();
+        }
+
+        // Animate filter buttons
+        document.querySelectorAll('.filter-btn').forEach((btn, index) => {
+            btn.style.opacity = '0';
+            btn.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+                btn.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+                btn.style.opacity = '1';
+                btn.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+
+        // Hero section animations on load
+        window.addEventListener('load', () => {
+            const heroContent = document.querySelector('section:first-of-type');
+            if (heroContent) {
+                const children = heroContent.querySelectorAll('*');
+                children.forEach((child, index) => {
+                    child.style.opacity = '0';
+                    child.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        child.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                        child.style.opacity = '1';
+                        child.style.transform = 'translateY(0)';
+                    }, index * 150);
+                });
+            }
+
+            // Animate navigation
+            const nav = document.querySelector('nav');
+            if (nav) {
+                nav.style.opacity = '0';
+                nav.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    nav.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                    nav.style.opacity = '1';
+                    nav.style.transform = 'translateY(0)';
+                }, 100);
+            }
+        });
+
+        // Enhanced hover effects for interactive elements
+        document.querySelectorAll('button, a, .group').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transition = 'transform 0.3s ease-out';
+            });
+        });
     </script>
 
 </body>

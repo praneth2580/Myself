@@ -109,6 +109,189 @@
             background: rgba(16, 22, 34, 0.7);
             border-color: rgba(255, 255, 255, 0.1);
         }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in-delay-1 {
+            animation: fadeInUp 0.8s ease-out 0.1s forwards;
+            opacity: 0;
+        }
+
+        .fade-in-delay-2 {
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .fade-in-delay-3 {
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        .scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Scroll-triggered animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger animation for grid items */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .stagger-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse animation for buttons */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse-hover:hover {
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Project Loader Styles */
+        .projects-loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            gap: 1.5rem;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(13, 89, 242, 0.1);
+            border-top-color: #0d59f2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .dark .loader-spinner {
+            border-color: rgba(255, 255, 255, 0.1);
+            border-top-color: #3b82f6;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-text {
+            color: #4a5568;
+            font-size: 0.875rem;
+            font-weight: 500;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .dark .loader-text {
+            color: #a0aec0;
+        }
     </style>
 </head>
 
@@ -232,6 +415,11 @@
                     </a>
                 </div>
                 <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 p-2 sm:p-4">
+                    <!-- Loader -->
+                    <div id="projects-loader" class="projects-loader col-span-full">
+                        <div class="loader-spinner"></div>
+                        <div class="loader-text">Loading Projects...</div>
+                    </div>
                     <!-- Projects will be loaded dynamically from projects.json -->
                 </div>
             </div>
@@ -251,8 +439,7 @@
                         class="group relative p-6 sm:p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(13,89,242,0.1)]">
                         <div
                             class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-gradient-to-br from-black/5 to-black/0 dark:from-white/5 dark:to-white/0 border border-black/10 dark:border-white/10 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-primary group-hover:border-primary transition-colors duration-300">
-                            <span
-                                class="material-symbols-outlined text-text-light/80 dark:text-white/80 group-hover:text-white text-xl sm:text-2xl">devices</span>
+                            <span class="material-symbols-outlined text-text-light/80 dark:text-white/80 group-hover:text-white text-xl sm:text-2xl">devices</span>
                         </div>
                         <h3 class="text-text-light dark:text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Frontend
                             Development</h3>
@@ -609,15 +796,27 @@
 
         // Load and display featured projects
         async function loadFeaturedProjects() {
+            const projectsGrid = document.getElementById('projects-grid');
+            const projectsLoader = document.getElementById('projects-loader');
+
+            if (!projectsGrid) return;
+
             try {
+                // Show loader
+                if (projectsLoader) {
+                    projectsLoader.style.display = 'flex';
+                }
+
                 const response = await fetch('projects.json');
                 const data = await response.json();
-                const projectsGrid = document.getElementById('projects-grid');
-
-                if (!projectsGrid) return;
 
                 // Filter featured projects and limit to 4
                 const featuredProjects = data.projects.filter(p => p.featured).slice(0, 4);
+
+                // Hide loader and show projects
+                if (projectsLoader) {
+                    projectsLoader.style.display = 'none';
+                }
 
                 projectsGrid.innerHTML = featuredProjects.map((project, index) => {
                     const tags = project.tags.slice(0, 2).map(tag =>
@@ -651,11 +850,32 @@
                         </div>
                     `;
                 }).join('');
+                
+                // Animate project cards after rendering
+                setTimeout(() => {
+                    const projectCards = projectsGrid.querySelectorAll('div');
+                    projectCards.forEach((card, index) => {
+                        card.classList.add('stagger-item');
+                        staggerObserver.observe(card);
+                    });
+                }, 100);
             } catch (error) {
                 console.error('Error loading projects:', error);
+                // Hide loader on error
+                if (projectsLoader) {
+                    projectsLoader.style.display = 'none';
+                }
+                // Show error message
+                if (projectsGrid) {
+                    projectsGrid.innerHTML = `
+                        <div class="col-span-full text-center py-12">
+                            <p class="text-text-light-muted dark:text-white/60">Failed to load projects. Please try again later.</p>
+                        </div>
+                    `;
+                }
             }
         }
-
+        
         // Load projects when page loads
         loadFeaturedProjects();
 
@@ -816,6 +1036,85 @@
                 }, 100);
             }
         }
+
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                    }, index * 100);
+                    scrollObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and cards
+        document.querySelectorAll('section').forEach((section, index) => {
+            if (index > 0) { // Skip first section (hero)
+                section.classList.add('animate-on-scroll');
+                scrollObserver.observe(section);
+            }
+        });
+
+        // Stagger animation for grid items
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                    }, index * 50);
+                    staggerObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Apply stagger to service cards, tech stack items, and highlight cards
+        document.querySelectorAll('#services .group, #stack > div > div, #highlights > div > div').forEach(item => {
+            item.classList.add('stagger-item');
+            staggerObserver.observe(item);
+        });
+
+        // Hero section animations on load
+        window.addEventListener('load', () => {
+            const heroContent = document.querySelector('section:first-of-type .layout-content-container');
+            if (heroContent) {
+                const children = heroContent.querySelectorAll('*');
+                children.forEach((child, index) => {
+                    child.style.opacity = '0';
+                    child.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        child.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                        child.style.opacity = '1';
+                        child.style.transform = 'translateY(0)';
+                    }, index * 150);
+                });
+            }
+
+            // Animate navigation
+            const nav = document.querySelector('nav');
+            if (nav) {
+                nav.style.opacity = '0';
+                nav.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    nav.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                    nav.style.opacity = '1';
+                    nav.style.transform = 'translateY(0)';
+                }, 100);
+            }
+        });
+
+        // Enhanced hover effects for interactive elements
+        document.querySelectorAll('button, a, .group').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transition = 'transform 0.3s ease-out';
+            });
+        });
     </script>
 
 </body>
