@@ -1,108 +1,823 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Praneth Vasudeo Pujari - Portfolio</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Praneth V. Pujari - Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "primary-light": "#3b82f6",
+                        "background-light": "#ffffff",
+                        "background-light-alt": "#f8f9fa",
+                        "background-dark": "#0a0e1a",
+                        "background-dark-alt": "#101622",
+                        "surface-light": "#ffffff",
+                        "surface-light-alt": "#f1f3f5",
+                        "surface-dark": "#1a2130",
+                        "surface-dark-alt": "#151b26",
+                        "text-light": "#1a1a1a",
+                        "text-light-muted": "#4a5568",
+                        "text-dark": "#ffffff",
+                        "text-dark-muted": "#a0aec0",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+                        "body": ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+                        "mono": ["JetBrains Mono", "Monaco", "Consolas", "monospace"],
+                        "title": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+            text-rendering: optimizeLegibility;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #101622;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #101622;
+        }
+
+        .light ::-webkit-scrollbar-track {
+            background: #f1f3f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #222f49;
+            border-radius: 4px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #222f49;
+        }
+
+        .light ::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0d59f2;
+        }
+
+        .glass-nav {
+            background: rgba(16, 22, 34, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .light .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .glass-nav {
+            background: rgba(16, 22, 34, 0.7);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
-<body>
-    <header class="animated-header">
-        <div class="header-content">
-            <h1 class="slide-in">Praneth Vasudeo Pujari</h1>
-            <h2 class="slide-in delay-1">Senior Software Developer</h2>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li><a href="resume.pdf" download class="resume-btn pulse">Download Resume</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <section id="about">
-        <h3>About Me</h3>
-        <p>Brief introduction about Praneth goes here.</p>
-    </section>
-
-    <section id="skills" class="fade-in">
-        <div class="section-content">
-            <h3 class="section-title">Skills</h3>
-            <div class="skills-container">
-                <div class="skill-card scale-in" data-skill="Node.js">
-                    <div class="skill-icon">N</div>
-                    <span>Node.js</span>
+<body
+    class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body overflow-x-hidden transition-colors duration-500">
+    <div class="fixed top-4 sm:top-6 left-0 right-0 z-50 flex justify-center px-2 sm:px-4">
+        <nav
+            class="glass-nav border border-black/10 dark:border-white/10 rounded-full px-1 sm:px-2 py-2 flex items-center justify-between shadow-2xl max-w-4xl w-full">
+            <div class="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-4">
+                <div class="size-7 sm:size-8 rounded-full bg-primary flex items-center justify-center text-white">
+                    <span class="font-bold text-sm sm:text-lg">P</span>
                 </div>
-                <div class="skill-card scale-in" data-skill="React.js">
-                    <div class="skill-icon">R</div>
-                    <span>React.js</span>
-                </div>
-                <div class="skill-card scale-in" data-skill="JavaScript">
-                    <div class="skill-icon">JS</div>
-                    <span>JavaScript</span>
-                </div>
-                <div class="skill-card scale-in" data-skill="Express.js">
-                    <div class="skill-icon">E</div>
-                    <span>Express.js</span>
-                </div>
-                <div class="skill-card scale-in" data-skill="MongoDB">
-                    <div class="skill-icon">M</div>
-                    <span>MongoDB</span>
-                </div>
-                <div class="skill-card scale-in" data-skill="REST APIs">
-                    <div class="skill-icon">API</div>
-                    <span>REST APIs</span>
-                </div>
+                <h2
+                    class="text-text-light dark:text-white text-sm sm:text-base font-bold tracking-tight hidden sm:block">
+                    Praneth V. Pujari</h2>
+            </div>
+            <div
+                class="hidden md:flex items-center gap-1 bg-black/5 dark:bg-white/5 rounded-full p-1 border border-black/10 dark:border-white/10">
+                <a class="px-5 py-2 text-text-light/70 dark:text-white/70 hover:text-text-light dark:hover:text-white text-sm font-medium rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    href="#work">Work</a>
+                <a class="px-5 py-2 text-text-light/70 dark:text-white/70 hover:text-text-light dark:hover:text-white text-sm font-medium rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    href="#services">Services</a>
+                <a class="px-5 py-2 text-text-light/70 dark:text-white/70 hover:text-text-light dark:hover:text-white text-sm font-medium rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    href="#experience">Experience</a>
+                <a class="px-5 py-2 text-text-light/70 dark:text-white/70 hover:text-text-light dark:hover:text-white text-sm font-medium rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    href="#stack">Stack</a>
+            </div>
+            <div class="flex items-center gap-2 pr-1 sm:pr-2">
+                <button id="theme-toggle"
+                    class="flex cursor-pointer items-center justify-center rounded-full h-9 w-9 bg-white/5 dark:bg-white/5 hover:bg-white/10 dark:hover:bg-white/10 transition-all text-text-light dark:text-white border border-black/10 dark:border-white/10">
+                    <span id="theme-icon" class="material-symbols-outlined text-xl">dark_mode</span>
+                </button>
+                <button id="mobile-menu-btn"
+                    class="md:hidden flex cursor-pointer items-center justify-center rounded-full h-9 w-9 bg-white/5 dark:bg-white/5 hover:bg-white/10 dark:hover:bg-white/10 transition-colors text-text-light dark:text-white border border-black/10 dark:border-white/10">
+                    <span class="material-symbols-outlined text-xl">menu</span>
+                </button>
+                <button id="lets-talk-nav"
+                    class="hidden sm:flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 sm:h-10 px-4 sm:px-6 bg-primary hover:bg-primary-light transition-colors text-white text-xs sm:text-sm font-bold shadow-[0_0_15px_rgba(13,89,242,0.3)]">
+                    <span class="truncate">Let's Talk</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-20 left-0 right-0 z-40 hidden md:hidden px-4">
+        <div class="glass-nav border border-black/10 dark:border-white/10 rounded-2xl p-4 max-w-4xl mx-auto shadow-2xl">
+            <div class="flex flex-col gap-2">
+                <a class="px-4 py-3 text-text-light/70 dark:text-white/70 hover:text-text-light dark:hover:text-white text-sm font-medium rounded-xl hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    href="#work">Work</a>
+                <a class="px-4 py-3 text-text-light/70 dark:text-white/70 hover:text-text-light dark:hover:text-white text-sm font-medium rounded-xl hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    href="#services">Services</a>
+                <a class="px-4 py-3 text-text-light/70 dark:text-white/70 hover:text-text-light dark:hover:text-white text-sm font-medium rounded-xl hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    href="#experience">Experience</a>
+                <a class="px-4 py-3 text-text-light/70 dark:text-white/70 hover:text-text-light dark:hover:text-white text-sm font-medium rounded-xl hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    href="#stack">Stack</a>
+                <button id="lets-talk-mobile-menu"
+                    class="mt-2 flex cursor-pointer items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-light transition-colors text-white text-sm font-bold">
+                    <span>Let's Talk</span>
+                </button>
             </div>
         </div>
-    </section>
-
-    <section id="projects" class="fade-in">
-        <div class="section-content">
-            <h3 class="section-title">Projects</h3>
-            <div class="projects-grid">
-                <div class="project-card slide-up">
-                    <div class="project-image">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/80ab30ab-7134-4851-bd00-020f867cc179.png" alt="Element Clash Project">
+    </div>
+    <main class="flex flex-col min-h-screen pt-24 pb-12">
+        <section
+            class="relative w-full flex flex-col items-center justify-center min-h-[85vh] sm:min-h-[85vh] px-4 sm:px-6">
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] md:w-[600px] md:h-[600px] bg-primary/20 rounded-full blur-[80px] sm:blur-[100px] md:blur-[120px] pointer-events-none">
+            </div>
+            <div class="layout-content-container flex flex-col max-w-[960px] w-full z-10">
+                <div class="flex flex-col gap-6 sm:gap-8 items-center justify-center text-center p-2 sm:p-4">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] sm:text-xs font-medium text-primary uppercase tracking-wider mb-2">
+                        <span class="material-symbols-outlined text-[14px] sm:text-[16px]">verified</span> <span
+                            class="hidden sm:inline">Available for new projects</span><span
+                            class="sm:hidden">Available</span>
                     </div>
-                    <div class="project-info">
-                        <h4>ELEMENT CLASH</h4>
-                        <p>A strategy card game built with React.js.</p>
-                        <a href="#" class="project-link">View Project →</a>
+                    <div class="flex flex-col gap-3 sm:gap-4">
+                        <h1
+                            class="font-title text-text-light dark:text-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] tracking-tighter px-2">
+                            Praneth<br />
+                            <span class="text-text-light/40 dark:text-white/40">Vasudeo</span> Pujari
+                        </h1>
+                        <h2
+                            class="text-text-light/80 dark:text-white/80 text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto mt-2 sm:mt-4 px-2">
+                            FullStack Developer &amp; Android Developer.<br class="hidden sm:block" />
+                            <span class="block sm:inline">Building scalable web applications, mobile apps, and Android
+                                TV solutions with modern technologies.</span>
+                        </h2>
                     </div>
-                </div>
-                <div class="project-card slide-up delay-1">
-                    <div class="project-image">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4778fb4c-e7c1-4f5c-aa49-1378da2afe93.png" alt="Stockpy Project">
-                    </div>
-                    <div class="project-info">
-                        <h4>Stockpy</h4>
-                        <p>A stock prediction web app using Node.js frontend and Python ML backend.</p>
-                        <a href="#" class="project-link">View Project →</a>
+                    <div
+                        class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center mt-6 sm:mt-8 w-full sm:w-auto">
+                        <button id="view-projects-btn"
+                            class="group flex w-full sm:min-w-[160px] cursor-pointer items-center justify-center gap-2 rounded-xl h-12 px-6 bg-text-light dark:bg-white text-background-light dark:text-background-dark text-sm sm:text-base font-bold transition-transform hover:-translate-y-1 shadow-lg">
+                            <span>View Projects</span>
+                            <span
+                                class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_downward</span>
+                        </button>
+                        <button id="download-resume-btn"
+                            class="flex w-full sm:min-w-[160px] cursor-pointer items-center justify-center gap-2 rounded-xl h-12 px-6 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-text-light dark:text-white hover:bg-black/10 dark:hover:bg-white/10 text-sm sm:text-base font-bold transition-colors">
+                            <span class="material-symbols-outlined">download</span>
+                            <span>Download Resume</span>
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h3>Contact</h3>
-        <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn Profile</a></p>
-    </section>
-
-    <footer class="fade-in">
-        <div class="footer-content">
-            <p>&copy; 2023 Praneth Vasudeo Pujari</p>
-            <div class="social-links">
-                <a href="#" class="social-icon">GitHub</a>
-                <a href="#" class="social-icon">Twitter</a>
-                <a href="#" class="social-icon">LinkedIn</a>
+            <div
+                class="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-text-light/30 dark:text-white/30">
+                <span class="material-symbols-outlined text-2xl sm:text-3xl">keyboard_double_arrow_down</span>
             </div>
-        </div>
-    </footer>
+        </section>
+        <section class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 flex justify-center w-full" id="work">
+            <div class="layout-content-container flex flex-col max-w-[1024px] w-full">
+                <div
+                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 px-2 sm:px-4 pb-6 sm:pb-8 pt-5 border-b border-black/10 dark:border-white/10 mb-6 sm:mb-8">
+                    <h2
+                        class="text-text-light dark:text-white text-2xl sm:text-3xl font-bold leading-tight tracking-tight">
+                        Selected Works</h2>
+                    <a class="text-primary text-sm font-bold hover:underline flex items-center gap-1"
+                        href="projects.html">
+                        View all <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </a>
+                </div>
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 p-2 sm:p-4">
+                    <!-- Projects will be loaded dynamically from projects.json -->
+                </div>
+            </div>
+        </section>
+        <section class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 flex justify-center w-full" id="services">
+            <div class="layout-content-container flex flex-col max-w-[1024px] w-full">
+                <div
+                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 px-2 sm:px-4 pb-8 sm:pb-12 pt-5 border-b border-black/10 dark:border-white/10 mb-6 sm:mb-8">
+                    <h2
+                        class="text-text-light dark:text-white text-2xl sm:text-3xl font-bold leading-tight tracking-tight">
+                        Services</h2>
+                    <div class="text-text-light-muted dark:text-white/40 text-xs sm:text-sm">Specialized technical
+                        offerings</div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 p-2 sm:p-4">
+                    <div
+                        class="group relative p-6 sm:p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(13,89,242,0.1)]">
+                        <div
+                            class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-gradient-to-br from-black/5 to-black/0 dark:from-white/5 dark:to-white/0 border border-black/10 dark:border-white/10 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-primary group-hover:border-primary transition-colors duration-300">
+                            <span
+                                class="material-symbols-outlined text-text-light/80 dark:text-white/80 group-hover:text-white text-xl sm:text-2xl">devices</span>
+                        </div>
+                        <h3 class="text-text-light dark:text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Frontend
+                            Development</h3>
+                        <p
+                            class="text-text-light-muted dark:text-white/60 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+                            Building responsive, pixel-perfect web
+                            applications with React, TypeScript, HTML, CSS, and JavaScript. Creating modern, accessible
+                            user interfaces with optimal performance.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span
+                                class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-primary bg-primary/10 rounded border border-primary/10">React</span>
+                            <span
+                                class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-primary bg-primary/10 rounded border border-primary/10">TypeScript</span>
+                        </div>
+                    </div>
+                    <div
+                        class="group relative p-6 sm:p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(13,89,242,0.1)]">
+                        <div
+                            class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-gradient-to-br from-black/5 to-black/0 dark:from-white/5 dark:to-white/0 border border-black/10 dark:border-white/10 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-primary group-hover:border-primary transition-colors duration-300">
+                            <span
+                                class="material-symbols-outlined text-text-light/80 dark:text-white/80 group-hover:text-white text-xl sm:text-2xl">dns</span>
+                        </div>
+                        <h3 class="text-text-light dark:text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Backend
+                            Engineering</h3>
+                        <p
+                            class="text-text-light-muted dark:text-white/60 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+                            Architecting robust server-side solutions with Node.js and Nest.js. Building scalable APIs,
+                            microservices, and secure backend infrastructure.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span
+                                class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-primary bg-primary/10 rounded border border-primary/10">Node.js</span>
+                            <span
+                                class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-primary bg-primary/10 rounded border border-primary/10">Nest.js</span>
+                        </div>
+                    </div>
+                    <div
+                        class="group relative p-6 sm:p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(13,89,242,0.1)]">
+                        <div
+                            class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-gradient-to-br from-black/5 to-black/0 dark:from-white/5 dark:to-white/0 border border-black/10 dark:border-white/10 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-primary group-hover:border-primary transition-colors duration-300">
+                            <span
+                                class="material-symbols-outlined text-text-light/80 dark:text-white/80 group-hover:text-white text-xl sm:text-2xl">phone_android</span>
+                        </div>
+                        <h3 class="text-text-light dark:text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Android
+                            Development</h3>
+                        <p
+                            class="text-text-light-muted dark:text-white/60 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+                            Developing native Android applications and Android TV solutions using Java and Kotlin.
+                            Creating engaging mobile experiences with modern Android architecture.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span
+                                class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-primary bg-primary/10 rounded border border-primary/10">Android</span>
+                            <span
+                                class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-primary bg-primary/10 rounded border border-primary/10">Android
+                                TV</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section
+            class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 flex justify-center w-full bg-surface-light-alt dark:bg-surface-dark/30"
+            id="experience">
+            <div class="layout-content-container flex flex-col max-w-[800px] w-full">
+                <h2
+                    class="text-text-light dark:text-white text-2xl sm:text-3xl font-bold leading-tight tracking-tight px-2 sm:px-4 pb-8 sm:pb-12 text-center">
+                    Experience
+                </h2>
+                <div
+                    class="relative border-l border-black/10 dark:border-white/10 ml-6 md:ml-0 md:pl-12 space-y-8 sm:space-y-12">
+                    <div class="relative pl-8 md:pl-0">
+                        <div
+                            class="absolute -left-[5px] md:-left-[49px] top-1.5 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background-light dark:ring-background-dark">
+                        </div>
+                        <div class="flex flex-col md:flex-row gap-3 sm:gap-4 md:gap-12 items-start">
+                            <div class="md:w-32 flex-shrink-0 pt-0.5">
+                                <span class="text-text-light-muted dark:text-white/50 font-mono text-xs sm:text-sm">Oct
+                                    2025 — Present</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-text-light dark:text-white text-lg sm:text-xl font-bold mb-1">Senior
+                                    FullStack Developer</h3>
+                                <p class="text-primary text-xs sm:text-sm font-medium mb-2 sm:mb-3">Apprication Pvt Ltd
+                                    · Goregaon</p>
+                                <p class="text-text-light-muted dark:text-white/70 leading-relaxed text-xs sm:text-sm">
+                                    Leading full-stack development initiatives, architecting scalable solutions, and
+                                    driving technical excellence across web and mobile platforms. Collaborating with
+                                    cross-functional teams to deliver high-performance applications.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative pl-8 md:pl-0">
+                        <div
+                            class="absolute -left-[5px] md:-left-[49px] top-1.5 h-2.5 w-2.5 rounded-full bg-text-light/20 dark:bg-white/20 ring-4 ring-background-light dark:ring-background-dark">
+                        </div>
+                        <div class="flex flex-col md:flex-row gap-3 sm:gap-4 md:gap-12 items-start">
+                            <div class="md:w-32 flex-shrink-0 pt-0.5">
+                                <span class="text-text-light-muted dark:text-white/50 font-mono text-xs sm:text-sm">Nov
+                                    2021 — Oct 2025</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-text-light dark:text-white text-lg sm:text-xl font-bold mb-1">Senior
+                                    Software Developer</h3>
+                                <p
+                                    class="text-text-light-muted dark:text-white/60 text-xs sm:text-sm font-medium mb-2 sm:mb-3">
+                                    Cableguy CATV Digital Private LTD · Bhayander</p>
+                                <p class="text-text-light-muted dark:text-white/70 leading-relaxed text-xs sm:text-sm">
+                                    Developed and maintained robust software solutions for digital cable TV systems.
+                                    Implemented efficient algorithms, optimized system performance, and contributed to
+                                    the development of scalable applications serving thousands of users.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 flex justify-center w-full" id="stack">
+            <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                <h2
+                    class="text-text-light dark:text-white text-2xl sm:text-3xl font-bold leading-tight tracking-tight px-2 sm:px-4 pb-6 sm:pb-8 pt-5 text-center">
+                    Tech
+                    Stack</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 p-2 sm:p-4">
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">code</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">React</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">javascript</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">TypeScript</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">html</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">HTML/CSS</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">dns</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">Node.js</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">settings</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">Nest.js</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">phone_android</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">Android</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">tv</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">Android TV</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">code_blocks</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">Java</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">terminal</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">Python</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">memory</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">.NET</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">code_blocks</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">C#</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/10 dark:border-white/10 hover:border-primary/50 transition-colors group">
+                        <span
+                            class="material-symbols-outlined text-3xl sm:text-4xl mb-2 sm:mb-3 text-text-light-muted dark:text-white/40 group-hover:text-primary transition-colors">deployed_code</span>
+                        <span class="text-text-light dark:text-white text-xs sm:text-sm font-medium">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section
+            class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 flex justify-center w-full bg-surface-light-alt dark:bg-surface-dark/30"
+            id="highlights">
+            <div class="layout-content-container flex flex-col max-w-[1024px] w-full">
+                <h2
+                    class="text-text-light dark:text-white text-2xl sm:text-3xl font-bold leading-tight tracking-tight px-2 sm:px-4 pb-8 sm:pb-12 text-center">
+                    Highlights</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 p-2 sm:p-4">
+                    <div
+                        class="relative p-6 sm:p-8 rounded-2xl bg-surface-light dark:bg-surface-dark-alt border border-black/10 dark:border-white/10 shadow-sm hover:shadow-lg hover:border-primary/50 transition-all duration-300 group">
+                        <div
+                            class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 dark:from-primary/30 dark:to-primary/10 border border-primary/20 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-primary group-hover:border-primary transition-colors duration-300">
+                            <span
+                                class="material-symbols-outlined text-primary dark:text-primary-light group-hover:text-white text-2xl sm:text-3xl transition-colors">work_history</span>
+                        </div>
+                        <h3 class="text-text-light dark:text-white text-xl sm:text-2xl font-bold mb-2">4+ Years</h3>
+                        <p class="text-text-light-muted dark:text-white/70 leading-relaxed text-sm sm:text-base">
+                            Professional experience in full-stack development, building scalable applications across web
+                            and mobile platforms.</p>
+                    </div>
+                    <div
+                        class="relative p-6 sm:p-8 rounded-2xl bg-surface-light dark:bg-surface-dark-alt border border-black/10 dark:border-white/10 shadow-sm hover:shadow-lg hover:border-primary/50 transition-all duration-300 group">
+                        <div
+                            class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 dark:from-emerald-500/30 dark:to-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-emerald-500 group-hover:border-emerald-500 transition-colors duration-300">
+                            <span
+                                class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 group-hover:text-white text-2xl sm:text-3xl transition-colors">code</span>
+                        </div>
+                        <h3 class="text-text-light dark:text-white text-xl sm:text-2xl font-bold mb-2">25+ Projects</h3>
+                        <p class="text-text-light-muted dark:text-white/70 leading-relaxed text-sm sm:text-base">Diverse
+                            portfolio spanning web applications, mobile apps, Android TV solutions, security tools, and
+                            open-source contributions.</p>
+                    </div>
+                    <div
+                        class="relative p-6 sm:p-8 rounded-2xl bg-surface-light dark:bg-surface-dark-alt border border-black/10 dark:border-white/10 shadow-sm hover:shadow-lg hover:border-primary/50 transition-all duration-300 group">
+                        <div
+                            class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 dark:from-purple-500/30 dark:to-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-purple-500 group-hover:border-purple-500 transition-colors duration-300">
+                            <span
+                                class="material-symbols-outlined text-purple-600 dark:text-purple-400 group-hover:text-white text-2xl sm:text-3xl transition-colors">psychology</span>
+                        </div>
+                        <h3 class="text-text-light dark:text-white text-xl sm:text-2xl font-bold mb-2">10+ Technologies
+                        </h3>
+                        <p class="text-text-light-muted dark:text-white/70 leading-relaxed text-sm sm:text-base">
+                            Proficient across multiple tech stacks including React, Node.js, Nest.js, Android, Java,
+                            Python, .NET, and C#.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section
+            class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 flex justify-center w-full bg-gradient-to-b from-background-light-alt dark:from-background-dark to-background-light dark:to-[#05080f]">
+            <div
+                class="layout-content-container flex flex-col items-center text-center max-w-[600px] w-full gap-6 sm:gap-8">
+                <h2
+                    class="text-text-light dark:text-white text-3xl sm:text-4xl md:text-5xl font-black tracking-tight px-2">
+                    Ready to build something amazing?
+                </h2>
+                <p class="text-text-light-muted dark:text-white/60 text-base sm:text-lg px-2">
+                    I'm currently available for freelance projects and open to new full-time opportunities.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+                    <button id="get-in-touch-btn"
+                        class="flex w-full sm:min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 sm:h-14 px-6 sm:px-8 bg-primary hover:bg-primary-light hover:shadow-lg hover:shadow-primary/30 transition-all text-white text-base sm:text-lg font-bold">
+                        <span class="truncate">Get in Touch</span>
+                    </button>
+                    <div class="flex gap-3 sm:gap-4 justify-center">
+                        <button id="email-btn"
+                            class="flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 w-12 sm:h-14 sm:w-14 border border-black/10 dark:border-white/10 bg-surface-light dark:bg-surface-dark hover:bg-black/10 dark:hover:bg-white/10 text-text-light dark:text-white transition-all">
+                            <span class="material-symbols-outlined">mail</span>
+                        </button>
+                        <button id="github-btn"
+                            class="flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 w-12 sm:h-14 sm:w-14 border border-black/10 dark:border-white/10 bg-surface-light dark:bg-surface-dark hover:bg-black/10 dark:hover:bg-white/10 text-text-light dark:text-white transition-all">
+                            <span class="material-symbols-outlined">code</span>
+                        </button>
+                    </div>
+                </div>
+                <footer class="mt-8 sm:mt-12 text-text-light-muted dark:text-white/30 text-xs sm:text-sm">
+                    © 2026 Praneth Vasudeo Pujari. All rights reserved.
+                </footer>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Theme management
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        // Get theme from localStorage or default to dark
+        const getTheme = () => {
+            const saved = localStorage.getItem('theme');
+            if (saved) return saved;
+            // Check system preference
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        };
+
+        // Apply theme
+        const applyTheme = (theme) => {
+            html.classList.remove('light', 'dark');
+            html.classList.add(theme);
+            localStorage.setItem('theme', theme);
+
+            // Update icon
+            if (themeIcon) {
+                themeIcon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+            }
+        };
+
+        // Initialize theme
+        const currentTheme = getTheme();
+        applyTheme(currentTheme);
+
+        // Toggle theme
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const newTheme = html.classList.contains('dark') ? 'light' : 'dark';
+                applyTheme(newTheme);
+            });
+        }
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close menu when clicking on a link
+            const menuLinks = mobileMenu.querySelectorAll('a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+
+        // Load and display featured projects
+        async function loadFeaturedProjects() {
+            try {
+                const response = await fetch('projects.json');
+                const data = await response.json();
+                const projectsGrid = document.getElementById('projects-grid');
+
+                if (!projectsGrid) return;
+
+                // Filter featured projects and limit to 4
+                const featuredProjects = data.projects.filter(p => p.featured).slice(0, 4);
+
+                projectsGrid.innerHTML = featuredProjects.map((project, index) => {
+                    const tags = project.tags.slice(0, 2).map(tag =>
+                        `<span class="px-2 py-1 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[10px] font-mono text-text-light-muted dark:text-white/60">${tag.toUpperCase()}</span>`
+                    ).join('');
+
+                    const mtClass = index === 1 || index === 3 ? 'md:mt-12' : '';
+
+                    return `
+                        <div class="group flex flex-col gap-4 cursor-pointer ${mtClass}" onclick="window.open('${project.url}', '_blank')">
+                            <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-surface-light-alt dark:bg-surface-dark">
+                                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                    style='background-image: url("${project.image}");'>
+                                </div>
+                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300"></div>
+                                <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-white/10">
+                                    <span class="material-symbols-outlined text-white">arrow_outward</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-0">
+                                <div class="flex-1">
+                                    <h3 class="text-text-light dark:text-white text-lg sm:text-xl font-bold leading-normal mb-1 group-hover:text-primary transition-colors">
+                                        ${project.name}
+                                    </h3>
+                                    <p class="text-text-light-muted dark:text-[#90a4cb] text-xs sm:text-sm font-normal">${project.description}</p>
+                                </div>
+                                <div class="flex gap-2 flex-shrink-0">
+                                    ${tags}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading projects:', error);
+            }
+        }
+
+        // Load projects when page loads
+        loadFeaturedProjects();
+
+        // Button functionality
+        const email = 'praneth2580@gmail.com'; // Update with your email
+        const githubUrl = 'https://github.com/praneth2580';
+        const resumePath = 'Praneth Vasudeo Pujari.pdf';
+
+        // Scroll to contact section
+        function scrollToContact() {
+            const contactSection = document.querySelector('section:last-of-type');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Open email client
+        function openEmail() {
+            window.location.href = `mailto:${email}?subject=Let's%20Talk%20-%20Portfolio%20Inquiry`;
+        }
+
+        // Open GitHub
+        function openGitHub() {
+            window.open(githubUrl, '_blank');
+        }
+
+        // Download resume
+        function downloadResume() {
+            const link = document.createElement('a');
+            link.href = resumePath;
+            link.download = 'Praneth_Vasudeo_Pujari_Resume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Scroll to work section
+        function scrollToWork() {
+            const workSection = document.getElementById('work');
+            if (workSection) {
+                workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Event listeners
+        const letsTalkNav = document.getElementById('lets-talk-nav');
+        const letsTalkMobile = document.getElementById('lets-talk-mobile-menu');
+        const getInTouchBtn = document.getElementById('get-in-touch-btn');
+        const emailBtn = document.getElementById('email-btn');
+        const githubBtn = document.getElementById('github-btn');
+        const downloadResumeBtn = document.getElementById('download-resume-btn');
+        const viewProjectsBtn = document.getElementById('view-projects-btn');
+
+        if (letsTalkNav) letsTalkNav.addEventListener('click', scrollToContact);
+        if (letsTalkMobile) {
+            letsTalkMobile.addEventListener('click', () => {
+                scrollToContact();
+                // Close mobile menu after clicking
+                if (mobileMenu) mobileMenu.classList.add('hidden');
+            });
+        }
+        if (getInTouchBtn) getInTouchBtn.addEventListener('click', openEmail);
+        if (emailBtn) emailBtn.addEventListener('click', openEmail);
+        if (githubBtn) githubBtn.addEventListener('click', openGitHub);
+        if (downloadResumeBtn) downloadResumeBtn.addEventListener('click', downloadResume);
+        if (viewProjectsBtn) viewProjectsBtn.addEventListener('click', scrollToWork);
+
+        // Smooth scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    // Close mobile menu if open
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Make scroll indicator clickable
+        const scrollIndicator = document.querySelector('.animate-bounce');
+        if (scrollIndicator) {
+            scrollIndicator.style.cursor = 'pointer';
+            scrollIndicator.addEventListener('click', () => {
+                scrollToWork();
+            });
+        }
+
+        // Add smooth scroll behavior to CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            html {
+                scroll-behavior: smooth;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Active navigation link highlighting on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+        function updateActiveNavLink() {
+            let current = '';
+            const scrollPosition = window.pageYOffset + 200;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    current = sectionId;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-text-light', 'dark:text-white');
+                link.classList.add('text-text-light/70', 'dark:text-white/70');
+
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-text-light/70', 'dark:text-white/70');
+                    link.classList.add('text-text-light', 'dark:text-white');
+                }
+            });
+        }
+
+        // Throttle scroll event for performance
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateActiveNavLink();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Initial call
+        updateActiveNavLink();
+
+        // Handle page load with hash (e.g., index.html#work)
+        if (window.location.hash) {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+    </script>
+
 </body>
+
 </html>

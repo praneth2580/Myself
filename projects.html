@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>All Projects - Unified Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "primary-light": "#3b82f6",
+                        "background-light": "#ffffff",
+                        "background-light-alt": "#f8f9fa",
+                        "background-dark": "#0a0e1a",
+                        "background-dark-alt": "#101622",
+                        "surface-light": "#ffffff",
+                        "surface-light-alt": "#f1f3f5",
+                        "surface-dark": "#1a2130",
+                        "surface-dark-alt": "#151b26",
+                        "text-light": "#1a1a1a",
+                        "text-light-muted": "#4a5568",
+                        "text-dark": "#ffffff",
+                        "text-dark-muted": "#a0aec0",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+                        "body": ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+                        "mono": ["JetBrains Mono", "Monaco", "Consolas", "monospace"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+            text-rendering: optimizeLegibility;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #101622;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #101622;
+        }
+
+        .light ::-webkit-scrollbar-track {
+            background: #f1f3f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #222f49;
+            border-radius: 4px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #222f49;
+        }
+
+        .light ::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0d59f2;
+        }
+
+        .glass-nav {
+            background: rgba(16, 22, 34, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .light .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .glass-nav {
+            background: rgba(16, 22, 34, 0.7);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Fancy Loader Styles */
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        .light .loader-container {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .loader-container.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+
+        .loader-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid transparent;
+            border-top-color: #0d59f2;
+            border-radius: 50%;
+            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+
+        .loader-ring:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+
+        .loader-ring:nth-child(2) {
+            animation-delay: -0.3s;
+            border-top-color: #3b82f6;
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+        }
+
+        .loader-ring:nth-child(3) {
+            animation-delay: -0.15s;
+            border-top-color: #60a5fa;
+            width: 50%;
+            height: 50%;
+            top: 25%;
+            left: 25%;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-text {
+            margin-top: 24px;
+            color: #0d59f2;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .light .loader-text {
+            color: #0d59f2;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body overflow-x-hidden transition-colors duration-500">
+    <!-- Fancy Loader -->
+    <div id="loader" class="loader-container">
+        <div class="flex flex-col items-center">
+            <div class="loader">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+            </div>
+            <div class="loader-text">Loading Projects...</div>
+        </div>
+    </div>
+
+    <div class="fixed top-4 sm:top-6 left-0 right-0 z-50 flex justify-center px-2 sm:px-4">
+        <nav
+            class="glass-nav border border-black/10 dark:border-white/10 rounded-full px-1 sm:px-2 py-2 flex items-center justify-between shadow-2xl max-w-4xl w-full">
+            <div class="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-4">
+                <a class="flex items-center gap-2 sm:gap-3 group" href="index.html">
+                    <div
+                        class="size-7 sm:size-8 rounded-full bg-primary flex items-center justify-center text-white group-hover:scale-105 transition-transform">
+                        <span class="font-bold text-sm sm:text-lg">P</span>
+                    </div>
+                    <h2 class="text-text-light dark:text-white text-sm sm:text-base font-bold tracking-tight hidden sm:block">Praneth V. Pujari</h2>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center gap-1 bg-black/5 dark:bg-white/5 rounded-full p-1 border border-black/10 dark:border-white/10">
+                <a class="px-5 py-2 text-text-light/70 dark:text-white/70 hover:text-text-light dark:hover:text-white text-sm font-medium rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    href="index.html#work">Work</a>
+                <a class="px-5 py-2 text-text-light/70 dark:text-white/70 hover:text-text-light dark:hover:text-white text-sm font-medium rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    href="index.html#experience">Experience</a>
+                <a class="px-5 py-2 text-text-light/70 dark:text-white/70 hover:text-text-light dark:hover:text-white text-sm font-medium rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    href="index.html#stack">Stack</a>
+            </div>
+            <div class="flex items-center gap-2 pr-1 sm:pr-2">
+                <button id="theme-toggle" class="flex cursor-pointer items-center justify-center rounded-full h-9 w-9 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-all text-text-light dark:text-white border border-black/10 dark:border-white/10">
+                    <span id="theme-icon" class="material-symbols-outlined text-xl">dark_mode</span>
+                </button>
+                <button id="lets-talk-nav"
+                    class="hidden sm:flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 sm:h-10 px-4 sm:px-6 bg-primary hover:bg-primary-light transition-colors text-white text-xs sm:text-sm font-bold shadow-[0_0_15px_rgba(13,89,242,0.3)]">
+                    <span class="truncate">Let's Talk</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+    <main class="flex flex-col min-h-screen pt-32 pb-12">
+        <section class="relative w-full flex flex-col items-center justify-center px-4 mb-12">
+            <div
+                class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/20 dark:bg-primary/20 rounded-full blur-[100px] pointer-events-none">
+            </div>
+            <div class="flex flex-col gap-4 items-center justify-center text-center max-w-3xl z-10">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-xs font-medium text-text-light-muted dark:text-white/60 uppercase tracking-wider mb-2">
+                    <span class="material-symbols-outlined text-[16px] text-primary">folder_open</span> Portfolio
+                    Archive
+                </div>
+                <h1 class="text-text-light dark:text-white text-4xl md:text-6xl font-black leading-tight tracking-tighter">
+                    All Projects
+                </h1>
+                <p class="text-text-light-muted dark:text-white/60 text-lg font-normal leading-relaxed max-w-xl mx-auto">
+                    A comprehensive collection of my work in web development, mobile applications, and AI experiments.
+                </p>
+            </div>
+        </section>
+        <section class="sticky top-24 sm:top-28 z-40 px-4 mb-16 flex justify-center">
+            <div
+                class="glass-nav p-1.5 rounded-full border border-black/10 dark:border-white/10 flex flex-wrap justify-center gap-1 shadow-lg ring-1 ring-black/5 dark:ring-white/5">
+                <button data-filter="all"
+                    class="px-5 py-2 rounded-full bg-primary text-white text-sm font-medium shadow-md transition-all hover:scale-105 filter-btn">All</button>
+                <button data-filter="Web"
+                    class="px-5 py-2 rounded-full text-text-light/60 dark:text-white/60 hover:text-text-light dark:hover:text-white hover:bg-black/10 dark:hover:bg-white/10 text-sm font-medium transition-all filter-btn">Web</button>
+                <button data-filter="Mobile"
+                    class="px-5 py-2 rounded-full text-text-light/60 dark:text-white/60 hover:text-text-light dark:hover:text-white hover:bg-black/10 dark:hover:bg-white/10 text-sm font-medium transition-all filter-btn">Mobile</button>
+                <button data-filter="AI/ML"
+                    class="px-5 py-2 rounded-full text-text-light/60 dark:text-white/60 hover:text-text-light dark:hover:text-white hover:bg-black/10 dark:hover:bg-white/10 text-sm font-medium transition-all filter-btn">AI/ML</button>
+                <button data-filter="Security"
+                    class="px-5 py-2 rounded-full text-text-light/60 dark:text-white/60 hover:text-text-light dark:hover:text-white hover:bg-black/10 dark:hover:bg-white/10 text-sm font-medium transition-all filter-btn">Security</button>
+                <button data-filter="Game"
+                    class="px-5 py-2 rounded-full text-text-light/60 dark:text-white/60 hover:text-text-light dark:hover:text-white hover:bg-black/10 dark:hover:bg-white/10 text-sm font-medium transition-all filter-btn">Game</button>
+            </div>
+        </section>
+        <section class="px-4 flex justify-center w-full">
+            <div class="layout-content-container flex flex-col max-w-[1280px] w-full">
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- Projects will be loaded dynamically from projects.json -->
+                </div>
+                <div id="load-more-container" class="flex justify-center mt-16 hidden">
+                    <button id="load-more-btn"
+                        class="flex items-center gap-2 px-6 py-3 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-text-light dark:text-white hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
+                        <span class="material-symbols-outlined text-sm">sync</span>
+                        <span class="text-sm font-bold">Load More Projects</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section
+            class="mt-20 py-24 px-4 flex justify-center w-full bg-gradient-to-b from-background-light-alt dark:from-background-dark to-background-light dark:to-[#05080f] border-t border-black/10 dark:border-white/5">
+            <div class="layout-content-container flex flex-col items-center text-center max-w-[600px] w-full gap-8">
+                <h2 class="text-text-light dark:text-white text-4xl md:text-5xl font-black tracking-tight">Have a project in mind?</h2>
+                <p class="text-text-light-muted dark:text-white/60 text-lg">
+                    I'm currently available for freelance projects and open to new full-time opportunities.
+                </p>
+                <div class="flex gap-4">
+                    <button id="get-in-touch-btn"
+                        class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-8 bg-primary hover:bg-primary-light hover:shadow-lg hover:shadow-primary/30 transition-all text-white text-lg font-bold">
+                        <span class="truncate">Get in Touch</span>
+                    </button>
+                    <button id="email-btn"
+                        class="flex min-w-[60px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 w-14 border border-black/10 dark:border-white/10 bg-surface-light dark:bg-surface-dark hover:bg-black/10 dark:hover:bg-white/10 text-text-light dark:text-white transition-all">
+                        <span class="material-symbols-outlined">mail</span>
+                    </button>
+                    <button id="github-btn"
+                        class="flex min-w-[60px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 w-14 border border-black/10 dark:border-white/10 bg-surface-light dark:bg-surface-dark hover:bg-black/10 dark:hover:bg-white/10 text-text-light dark:text-white transition-all">
+                        <span class="material-symbols-outlined">code</span>
+                    </button>
+                </div>
+                <footer class="mt-12 text-text-light-muted dark:text-white/30 text-sm">
+                    © 2024 Praneth Vasudeo Pujari. All rights reserved.
+                </footer>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Theme management
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+        
+        // Get theme from localStorage or default to dark
+        const getTheme = () => {
+            const saved = localStorage.getItem('theme');
+            if (saved) return saved;
+            // Check system preference
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        };
+        
+        // Apply theme
+        const applyTheme = (theme) => {
+            html.classList.remove('light', 'dark');
+            html.classList.add(theme);
+            localStorage.setItem('theme', theme);
+            
+            // Update icon
+            if (themeIcon) {
+                themeIcon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+            }
+        };
+        
+        // Initialize theme
+        const currentTheme = getTheme();
+        applyTheme(currentTheme);
+        
+        // Toggle theme
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const newTheme = html.classList.contains('dark') ? 'light' : 'dark';
+                applyTheme(newTheme);
+            });
+        }
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+        let allProjects = [];
+        let displayedProjects = [];
+        let currentFilter = 'all';
+        const projectsPerPage = 9;
+        let currentPage = 1;
+
+        // Hide loader with minimum display time for smooth UX
+        function hideLoader() {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                // Minimum 800ms display time for better UX
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                }, 800);
+            }
+        }
+
+        // Load projects from JSON
+        async function loadProjects() {
+            const startTime = Date.now();
+            try {
+                const response = await fetch('projects.json');
+                const data = await response.json();
+                allProjects = data.projects;
+                displayedProjects = [...allProjects];
+                renderProjects();
+                
+                // Ensure minimum display time
+                const elapsed = Date.now() - startTime;
+                const minDisplayTime = 800;
+                if (elapsed < minDisplayTime) {
+                    setTimeout(hideLoader, minDisplayTime - elapsed);
+                } else {
+                    hideLoader();
+                }
+            } catch (error) {
+                console.error('Error loading projects:', error);
+                hideLoader();
+            }
+        }
+
+        // Render projects
+        function renderProjects() {
+            const projectsGrid = document.getElementById('projects-grid');
+            if (!projectsGrid) return;
+
+            const filtered = currentFilter === 'all' 
+                ? displayedProjects 
+                : displayedProjects.filter(p => p.category === currentFilter);
+
+            const toDisplay = filtered.slice(0, currentPage * projectsPerPage);
+            const hasMore = filtered.length > toDisplay.length;
+
+            projectsGrid.innerHTML = toDisplay.map(project => {
+                const tags = project.tags.slice(0, 2).map(tag => 
+                    `<span class="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[10px] font-mono text-text-light-muted dark:text-white/60">${tag.toUpperCase()}</span>`
+                ).join('');
+
+                return `
+                    <div class="group flex flex-col gap-4 cursor-pointer" onclick="window.open('${project.url}', '_blank')">
+                        <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-surface-light-alt dark:bg-surface-dark shadow-2xl shadow-black/20">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                style='background-image: url("${project.image}");'>
+                            </div>
+                            <div class="absolute inset-0 bg-black/40 dark:bg-black/40 group-hover:bg-black/20 dark:group-hover:bg-black/20 transition-colors duration-300"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="bg-black/50 dark:bg-black/50 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2">
+                                    <span class="text-white text-sm font-bold">View Project</span>
+                                    <span class="material-symbols-outlined text-white text-sm">arrow_outward</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-start">
+                                <h3 class="text-text-light dark:text-white text-xl font-bold leading-normal group-hover:text-primary transition-colors">
+                                    ${project.name}
+                                </h3>
+                                <div class="flex gap-2 mt-1">
+                                    ${tags}
+                                </div>
+                            </div>
+                            <p class="text-text-light-muted dark:text-[#90a4cb] text-sm font-normal line-clamp-2">${project.description}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Show/hide load more button
+            const loadMoreContainer = document.getElementById('load-more-container');
+            if (loadMoreContainer) {
+                loadMoreContainer.classList.toggle('hidden', !hasMore);
+            }
+        }
+
+        // Filter projects
+        function filterProjects(category) {
+            currentFilter = category;
+            currentPage = 1;
+            renderProjects();
+            
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('bg-primary', 'text-white', 'shadow-md');
+                    btn.classList.remove('text-text-light/60', 'dark:text-white/60');
+                } else {
+                    btn.classList.remove('bg-primary', 'text-white', 'shadow-md');
+                    btn.classList.add('text-text-light/60', 'dark:text-white/60');
+                }
+            });
+        }
+
+        // Load more projects
+        function loadMore() {
+            currentPage++;
+            renderProjects();
+        }
+
+        // Event listeners
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterProjects(btn.dataset.filter);
+            });
+        });
+
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', loadMore);
+        }
+
+        // Initialize
+        loadProjects();
+        
+        // Button functionality
+        const email = 'praneth2580@gmail.com'; // Update with your email
+        const githubUrl = 'https://github.com/praneth2580';
+        
+        // Scroll to contact section
+        function scrollToContact() {
+            const contactSection = document.querySelector('section:last-of-type');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        // Open email client
+        function openEmail() {
+            window.location.href = `mailto:${email}?subject=Let's%20Talk%20-%20Portfolio%20Inquiry`;
+        }
+        
+        // Open GitHub
+        function openGitHub() {
+            window.open(githubUrl, '_blank');
+        }
+        
+        // Event listeners
+        const letsTalkNav = document.getElementById('lets-talk-nav');
+        const getInTouchBtn = document.getElementById('get-in-touch-btn');
+        const emailBtn = document.getElementById('email-btn');
+        const githubBtn = document.getElementById('github-btn');
+        
+        if (letsTalkNav) letsTalkNav.addEventListener('click', scrollToContact);
+        if (getInTouchBtn) getInTouchBtn.addEventListener('click', openEmail);
+        if (emailBtn) emailBtn.addEventListener('click', openEmail);
+        if (githubBtn) githubBtn.addEventListener('click', openGitHub);
+    </script>
+
+</body>
+
+</html>
